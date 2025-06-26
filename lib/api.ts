@@ -1,5 +1,5 @@
 import axios from "axios";
-import { type NewNoteData, type Note } from "../types/note";
+import { NewNoteData, Note } from "../types/note";
 
 const API_KEY = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
 const API_URL = 'https://notehub-public.goit.study/api/notes';
@@ -15,14 +15,16 @@ interface NotesHttpResponse{
     totalPages: number;
 }
 
-export async function fetchNotes(searchQuery: string, page: number): Promise<NotesHttpResponse> {
+export async function fetchNotes(searchQuery: string, page: number, tag?:string): Promise<NotesHttpResponse> {
     const params: {
         page: number;
         perPage: number;
         search?: string;
+        tag?: string;
     } = {
         page,
-        perPage: 12
+        perPage: 12,
+        tag,
     }
 
     const trimmedQuery = searchQuery.trim();
