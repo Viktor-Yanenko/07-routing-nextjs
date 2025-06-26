@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from "next/dynamic";
-import { type Note } from "../../types/note";
+import { Note } from "../../../../types/note";
 
 const NotesClient = dynamic(() => import('./Notes.client'), {ssr: false})
 
