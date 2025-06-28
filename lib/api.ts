@@ -13,21 +13,27 @@ interface NotesHttpResponse{
     page: number;
     notes: Note[];
     totalPages: number;
+    tag?: string;
 }
 
-export async function fetchNotes(searchQuery: string, page: number): Promise<NotesHttpResponse> {
+export async function fetchNotes(searchQuery: string, page: number, tag?: string): Promise<NotesHttpResponse> {
     const params: {
         page: number;
         perPage: number;
         search?: string;
+        tag?: string;
     } = {
         page,
-        perPage: 12
+        perPage: 12,
     }
 
     const trimmedQuery = searchQuery.trim();
     if (trimmedQuery !== '') {
         params.search = trimmedQuery;
+    }
+
+    if (tag) {
+        params.tag = tag;
     }
     
     const response = await axios.get<NotesHttpResponse>(API_URL, {

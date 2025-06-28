@@ -19,7 +19,7 @@ export default function TagsMenu() {
           <li className={css.menuItem}>
             <Link
               onClick={toggle}
-              href={`/notes/filter/All`}
+              href={`/notes/filter/all`}
               className={css.menuLink}
             >
               All notes
