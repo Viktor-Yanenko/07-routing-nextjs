@@ -7,9 +7,10 @@ import Pagination from '../../../../components/Pagination/Pagination';
 import SearchBox from '../../../../components/SearchBox/SearchBox';
 import css from './NotesPage.module.css';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
-import NoteModal from '../../../../components/NoteModal/NoteModal';
+import Modal from '../../../../components/Modal/Modal';
 import { useDebounce } from 'use-debounce';
 import { Note } from '../../../../types/note';
+import NoteForm from '../../../../components/NoteForm/NoteForm';
 
 interface NotesClientProps {
   initialNotes: Note[];
@@ -73,7 +74,11 @@ export default function App({
       ) : (
         !isLoading && !isError && <p className={css.empty}>No notes found</p>
       )}
-      {modal && <NoteModal onClose={closeModal} />}
+      {modal && (
+        <Modal>
+          <NoteForm onClose={closeModal} />
+        </Modal>
+      )}
     </div>
   );
 }
