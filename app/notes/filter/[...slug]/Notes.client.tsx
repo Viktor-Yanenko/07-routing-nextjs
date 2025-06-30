@@ -75,7 +75,7 @@ export default function App({
         !isLoading && !isError && <p className={css.empty}>No notes found</p>
       )}
       {modal && (
-        <Modal>
+        <Modal onClose={closeModal}>
           <NoteForm onClose={closeModal} />
         </Modal>
       )}
