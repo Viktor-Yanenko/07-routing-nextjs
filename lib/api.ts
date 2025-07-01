@@ -10,10 +10,8 @@ const HEADERS = {
 }
 
 interface NotesHttpResponse{
-    page: number;
     notes: Note[];
     totalPages: number;
-    tag?: string;
 }
 
 export async function fetchNotes(searchQuery: string, page: number, tag?: string): Promise<NotesHttpResponse> {
