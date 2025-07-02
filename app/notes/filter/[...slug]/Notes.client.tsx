@@ -18,9 +18,10 @@ interface NotesClientProps {
   tag?: string;
 }
 
-export default function App({
+export default function NotesClient({
   initialNotes,
   initialTotalPages,
+  tag,
 }: NotesClientProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [modal, setModal] = useState(false);
@@ -29,8 +30,8 @@ export default function App({
   const [debouncedQuery] = useDebounce(searchQuery, 500);
 
   const { data, isError, isLoading } = useQuery({
-    queryKey: ['notes', debouncedQuery, currentPage],
-    queryFn: () => fetchNotes(debouncedQuery, currentPage),
+    queryKey: ['notes', debouncedQuery, currentPage, tag],
+    queryFn: () => fetchNotes(debouncedQuery, currentPage, tag),
     placeholderData: keepPreviousData,
     initialData:
       debouncedQuery === '' && currentPage === 1
