@@ -38,9 +38,12 @@ export default function NotePreview({ id }: NotePreviewProps) {
             </button>
           </div>
           <p className={css.content}>{note.content}</p>
-          <p className={css.date}>
-            {new Date(note.createdAt).toLocaleDateString('uk-UA')}
-          </p>
+          <ul className={css.noteFooter}>
+            <li className={css.tag}>{note.tag}</li>
+            <li className={css.date}>
+              {new Date(note.createdAt).toLocaleDateString('uk-UA')}
+            </li>
+          </ul>
         </div>
       </div>
     </Modal>
